@@ -1,29 +1,35 @@
 ﻿module Oware
 
-type StartingPosition =   //players are named after their startingpostition 
-    | South
-    | North
+type StartingPosition =   //players are named after their startingpostition; south always starts
+    | South of int 
+    | North of int 
 
     
 
-type Store = {  //player
+type Store = {                      // each player has their main store 
     capacity: int
     player: StartingPosition
-    atCapacity : bool //I win (25)
+    smallHouse: (int*int*int*int*int*int)
 }
 type Board = {
     position: StartingPosition
-    houses: (int*int*int*int*int*int*int*int*int*int*int*int) //first six belong to south 
     stores: Store*Store    ///puting players on the board
 }
+type GameState = 
+     |Ready
+     |South'sTurn
+     |North'sTurn
+     |Draw 
+     |SouthWin 
+     |NorthWin
+
 
 let getSeeds n board = failwith "Not implemented"
 
 let useHouse n board = failwith "Not implemented"
 
-let start p = "fail"
-
-       
+let start position = failwith "Not implemented"
+   
                         
         
              
