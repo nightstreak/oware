@@ -1,8 +1,8 @@
 ﻿module Oware
 
 type StartingPosition =   //players are named after their startingpostition; south always starts
-    | South of int 
-    | North of int 
+    | South 
+    | North  
 
     
 
@@ -11,24 +11,35 @@ type Store = {                      // each player has their main store
     player: StartingPosition
     smallHouse: (int*int*int*int*int*int)
 }
-type Board = {
-    position: StartingPosition
-    stores: Store*Store    ///puting players on the board
-}
-type GameState = 
-     |Ready
+
+type GameState =
      |South'sTurn
      |North'sTurn
      |Draw 
      |SouthWin 
      |NorthWin
 
+type Board = {
+    position: StartingPosition
+    stores: Store*Store    ///puting players on the board
+    gameState: GameState
+}
 
-let getSeeds n board = failwith "Not implemented"
+
+let getSeeds n board = 
 
 let useHouse n board = failwith "Not implemented"
 
-let start position = failwith "Not implemented"
+let start pos = 
+    let pie = 
+        match pos with
+        | South-> South'sTurn 
+        | North-> North'sTurn
+        
+    let A = {Store.capacity=0;player=pos;smallHouse=(4,4,4,4,4,4)}
+    let B = {Store.capacity=0;player=pos;smallHouse=(4,4,4,4,4,4)}
+
+    {Board.position=pos;stores=(A,B);gameState=pie}
    
                         
         
