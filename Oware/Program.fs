@@ -26,26 +26,25 @@ type Board = {
 }
 
 
-let getSeeds n board = 
+let getSeeds n board = failwith "Not implemented"
 
 let useHouse n board = failwith "Not implemented"
 
-let start pos = 
+let start pos =
     let pie = 
         match pos with
         | South-> South'sTurn 
         | North-> North'sTurn
-        
-    let A = {Store.capacity=0;player=pos;smallHouse=(4,4,4,4,4,4)}
-    let B = {Store.capacity=0;player=pos;smallHouse=(4,4,4,4,4,4)}
+   
+    let A = {Store.capacity=0;player=South;smallHouse=(4,4,4,4,4,4)}
+    let B = {Store.capacity=0;player=North;smallHouse=(4,4,4,4,4,4)}
 
     {Board.position=pos;stores=(A,B);gameState=pie}
-   
-                        
-        
-             
-      
-let score board = failwith "Not implemented"
+
+let score board = 
+    let storeA,storeB = board.stores    //tapiwas part 
+    storeA.capacity,storeB.capacity
+    
 
 let gameState board = failwith "Not implemented"
 
