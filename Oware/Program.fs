@@ -63,8 +63,8 @@ let getSeeds n board = //houses are numbered 1 to 12 with the first 6 being the 
                                                     |{capacity=_;player=_;smallHouse=(q,w,e,r,t,y)} -> t
     |12 -> match board with 
           |{position=_;stores=(a,b);gameState=_} -> match b with 
-                                                    |{capacity=_;player=_;smallHouse=(q,w,e,r,t,y)} -> y
-    |_ -> failwith "invalid hous3e number"
+                                                    |{capacity=_;player=_;smallHouse=(q,w,e,r,t,y)} -> y // i know there is a better way to do this but im to lazy to do the typing
+    |_ -> failwith "invalid house number"
 
 let useHouse n board = failwith "Not implemented"
 
