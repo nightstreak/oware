@@ -6,6 +6,7 @@ type StartingPosition =   //players are named after their startingpostition; sou
 
     
 
+
 type Store = {                      // each player has their main store 
     capacity: int
     player: StartingPosition
@@ -21,12 +22,17 @@ type GameState =
 
 type Board = {
     position: StartingPosition
-    stores: Store*Store    ///puting players on the board
+    stores: Store*Store
     gameState: GameState
 }
 
 
+<<<<<<< HEAD
 let getSeeds n board = failwith "Not implemented"
+=======
+
+let getSeeds n board = failwith "Not implement3ed"
+>>>>>>> 2c18751de7bcde665234ec8e6e868d493530a3c2
 
 let useHouse n board = failwith "Not implemented"
 
@@ -46,7 +52,13 @@ let score board =
     storeA.capacity,storeB.capacity
     
 
-let gameState board = failwith "Not implemented"
+let gameState board = 
+    match board.gameState with
+    |South'sTurn -> "South's Turn"
+    |North'sTurn -> "North's Turn"
+    |Draw -> "Draw"
+    |SouthWin -> "South Won"
+    |NorthWin -> "North Won"
 
 [<EntryPoint>]
 let main _ =
