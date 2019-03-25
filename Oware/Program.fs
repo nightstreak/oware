@@ -6,6 +6,7 @@ type StartingPosition =   //players are named after their startingpostition; sou
 
     
 
+
 type Store = {                      // each player has their main store 
     capacity: int
     player: StartingPosition
@@ -21,11 +22,16 @@ type GameState =
 
 type Board = {
     position: StartingPosition
+<<<<<<< HEAD
     stores: Store*Store    ///puting players on the board   (first store belongs to south)
+=======
+    stores: Store*Store
+>>>>>>> Thapelo'sBranch
     gameState: GameState
 }
 
 
+<<<<<<< HEAD
 let getSeeds n board = //houses are numbered 1 to 12 with the first 6 being the houses in South (first store belongs to south)
     match n with 
     |1 -> match board with //structuly decomposing board
@@ -66,6 +72,14 @@ let getSeeds n board = //houses are numbered 1 to 12 with the first 6 being the 
                                                     |{capacity=_;player=_;smallHouse=(q,w,e,r,t,y)} -> y // i know there is a better way to do this but im to lazy to do the typing
     |_ -> failwith "invalid house number"
 
+=======
+<<<<<<< HEAD
+let getSeeds n board = failwith "Not implemented"
+=======
+
+let getSeeds n board = failwith "Not implement3ed"
+>>>>>>> 2c18751de7bcde665234ec8e6e868d493530a3c2
+>>>>>>> Thapelo'sBranch
 
 let useHouse n board = failwith "Not implemented"
 
@@ -85,7 +99,13 @@ let score board =
     storeA.capacity,storeB.capacity
     
 
-let gameState board = failwith "Not implemented"
+let gameState board = 
+    match board.gameState with
+    |South'sTurn -> "South's Turn"
+    |North'sTurn -> "North's Turn"
+    |Draw -> "Draw"
+    |SouthWin -> "South Won"
+    |NorthWin -> "North Won"
 
 [<EntryPoint>]
 let main _ =
