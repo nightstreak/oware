@@ -29,7 +29,7 @@ type Board = {
 let getSeeds n board = //houses are numbered 1 to 12 with the first 6 being the houses in South (first store belongs to south)
     match n with 
     |1 -> match board with //structuly decomposing board
-          |{position=_;stores=(a,b);gameState=_} -> match a with //structuly (south's) store
+          |{position=_;stores=(a,b);gameState=_} -> match a with //structuly decomposing (south's) store
                                                     |{capacity=_;player=_;smallHouse=(q,w,e,r,t,y)} -> q
     |2 -> match board with 
           |{position=_;stores=(a,b);gameState=_} -> match a with 
@@ -47,7 +47,7 @@ let getSeeds n board = //houses are numbered 1 to 12 with the first 6 being the 
           |{position=_;stores=(a,b);gameState=_} -> match a with 
                                                     |{capacity=_;player=_;smallHouse=(q,w,e,r,t,y)} -> y
     |7 -> match board with 
-          |{position=_;stores=(a,b);gameState=_} -> match b with //structuly d(north's) store
+          |{position=_;stores=(a,b);gameState=_} -> match b with //structuly decomposing (north's) store
                                                     |{capacity=_;player=_;smallHouse=(q,w,e,r,t,y)} -> q
     |8 -> match board with 
           |{position=_;stores=(a,b);gameState=_} -> match b with 
@@ -64,6 +64,7 @@ let getSeeds n board = //houses are numbered 1 to 12 with the first 6 being the 
     |12 -> match board with 
           |{position=_;stores=(a,b);gameState=_} -> match b with 
                                                     |{capacity=_;player=_;smallHouse=(q,w,e,r,t,y)} -> y
+    |_ -> failwith "invalid hous3e number"
 
 let useHouse n board = failwith "Not implemented"
 
