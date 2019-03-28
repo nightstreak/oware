@@ -51,30 +51,36 @@ let getSeeds n board = //houses are numbered 1 to 12 with the first 6 being the 
 
 let useHouse n board = 
     let num = getSeeds n board
-    let OrinH = n //original house number
-    let bd,h = 
-     let rec add n num board =               //acsepts a house number and number of seeds and a board
+    let OrinH = n //original house number 
+    let rec add n num board =               //acsepts a house number and number of seeds and a board
                 match board with 
                 |{position=_;stores=(S,N);gameState=_} -> match S,N with
                                                           |{capacity=_;player=_;smallHouse=(q,w,e,r,t,y)},{capacity=_;player=_;smallHouse=(a,s,d,f,g,h)} -> match num>0 with 
-                                                                                                                                                             |false -> board,n
-                                                                                                                                                             |true -> match nH with 
-                                                                                                                                                                      |OrinH -> add (n+1) nm b //skip the house started at
-                                                                                                                                                                      |1 -> add (n+1) (nm-1) {board with stores=({S with smallHouse = (q,w+1,e,r,t,y)},N)}
-                                                                                                                                                                      |2 -> add (n+1) (nm-1) {board with stores=({S with smallHouse = (q,w,e+1,r,t,y)},N)}
-                                                                                                                                                                      |3 -> add (n+1) (nm-1) {board with stores=({S with smallHouse = (q,w,e,r+1,t,y)},N)}
-                                                                                                                                                                      |4 -> add (n+1) (nm-1) {board with stores=({S with smallHouse = (q,w,e,r,t+1,y)},N)}
-                                                                                                                                                                      |5 -> add (n+1) (nm-1) {board with stores=({S with smallHouse = (q,w,e,r,t,y+1)},N)}
-                                                                                                                                                                      |6 -> add (n+1) (nm-1) {board with stores=(S,{N with smallHouse = (a+1,s,d,f,g,h)}
-
-                                                                                                                                                                      |7 -> add (n+1) (nm-1) {board with stores=(S,{N with smallHouse = (a,s+1,d,f,g,h)})}
-                                                                                                                                                                      |8 -> add (n+1) (nm-1) {board with stores=(S,{N with smallHouse = (a,s,d+1,f,g,h)})}
-                                                                                                                                                                      |9 -> add (n+1) (nm-1) {board with stores=(S,{N with smallHouse = (a,s,d,f+1,g,h)})}
-                                                                                                                                                                      |10 -> add (n+1) (nm-1) {board with stores=(S,{N with smallHouse = (a,s,d,f,g+1,h)})}
-                                                                                                                                                                      |11 -> add (n+1) (nm-1) {board with stores=(S,{N with smallHouse = (a,s,d,f,g,h+1)})}
-                                                                                                                                                                      |12 -> add (n+1) (nm-1) {board with stores=({S with smallHouse = (q+1,w,e,r,t,y)},N)}
-     
-
+                                                                                                                                                            |false -> board,n
+                                                                                                                                                            |true -> match n with 
+                                                                                                                                                                     |OrinH -> add (n+1) num b //skip the house started at
+                                                                                                                                                                     |1 -> add (n+1) (num-1) {board with stores=({S with smallHouse = (q,w+1,e,r,t,y)},N)}
+                                                                                                                                                                     |2 -> add (n+1) (num-1) {board with stores=({S with smallHouse = (q,w,e+1,r,t,y)},N)}
+                                                                                                                                                                     |3 -> add (n+1) (num-1) {board with stores=({S with smallHouse = (q,w,e,r+1,t,y)},N)}
+                                                                                                                                                                     |4 -> add (n+1) (num-1) {board with stores=({S with smallHouse = (q,w,e,r,t+1,y)},N)}
+                                                                                                                                                                     |5 -> add (n+1) (num-1) {board with stores=({S with smallHouse = (q,w,e,r,t,y+1)},N)}
+                                                                                                                                                                     |6 -> add (n+1) (num-1) {board with stores=(S,{N with smallHouse = (a+1,s,d,f,g,h)})}
+                                                                                                                                                                     |7 -> add (n+1) (num-1) {board with stores=(S,{N with smallHouse = (a,s+1,d,f,g,h)})}
+                                                                                                                                                                     |8 -> add (n+1) (num-1) {board with stores=(S,{N with smallHouse = (a,s,d+1,f,g,h)})}
+                                                                                                                                                                     |9 -> add (n+1) (num-1) {board with stores=(S,{N with smallHouse = (a,s,d,f+1,g,h)})}
+                                                                                                                                                                     |10 -> add (n+1) (num-1) {board with stores=(S,{N with smallHouse = (a,s,d,f,g+1,h)})}
+                                                                                                                                                                     |11 -> add (n+1) (num-1) {board with stores=(S,{N with smallHouse = (a,s,d,f,g,h+1)})}
+                                                                                                                                                                     |12 -> add (n+1) (num-1) {board with stores=({S with smallHouse = (q+1,w,e,r,t,y)},N)}
+    let bd,h = add n num board 
+    let eat h = 
+            match getSeeds h bd with
+            |2|3 -> match bd with 
+                    |{position=_;stores=(S,N);gameState=gs} ->  match S,N with
+                                                                |{capacity=_;player=_;smallHouse=(q,w,e,r,t,y)},{capacity=_;player=_;smallHouse=(a,s,d,f,g,h)} -> match gs = S.player with
+                                                                                                                                                                  | true -> S.capacity + h
+                                                                                                                                                                  |_ -> N.capacity + h
+            |_ -> 0
+    eat h
 let start pos =
     let pie = 
         match pos with
